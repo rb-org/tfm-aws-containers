@@ -32,7 +32,7 @@ jobs:
             .circleci/validate.sh
       - run: mkdir -p plans
       - run: terraform workspace select $WKSPC || terraform workspace new $WKSPC
-      - run: terraform plan -var account_id=$aws_acc_id -input=false
+      - run: terraform plan -var account_id=$aws_acc_id -var r53_dns_domain_pub=$pub_dns_domain -input=false
   plan:
     docker:
       - image: hashicorp/terraform:light
@@ -59,7 +59,7 @@ jobs:
             .circleci/validate.sh
       - run: mkdir -p plans
       - run: terraform workspace select $WKSPC || terraform workspace new $WKSPC
-      - run: terraform plan -var account_id=$aws_acc_id -input=false -out=plans/tfm.plan
+      - run: terraform plan -var account_id=$aws_acc_id -var r53_dns_domain_pub=$pub_dns_domain -input=false -out=plans/tfm.plan
       - persist_to_workspace:
           root: plans
           paths:

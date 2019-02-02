@@ -1,5 +1,6 @@
 variable "region" {
   description = "AWS Region"
+  default     = "eu-west-1"
 }
 
 variable "account_id" {
