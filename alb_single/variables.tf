@@ -164,7 +164,7 @@ variable "stickiness_enabled" {
 }
 
 variable "target_type" {
-  default = "instance"
+  default = "ip"
 }
 
 ##############

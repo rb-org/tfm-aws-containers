@@ -35,3 +35,11 @@ variable "alb_logging_enabled" {
 variable "log_group_retention" {
   default = 3
 }
+
+variable "flaskapi_port" {
+  default = "5000"
+}
+
+variable "flaskapi_protocol" {
+  default = "HTTP"
+}
