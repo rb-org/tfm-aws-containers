@@ -164,7 +164,7 @@ variable "stickiness_enabled" {
 }
 
 variable "target_type" {
-  default = "instance"
+  default = "ip"
 }
 
 ##############
@@ -180,7 +180,7 @@ variable "default_tags" {
 
 variable "allowed_ips" {
   type    = "list"
-  default = []
+  default = ["1.1.1.1/32"]
 }
 
 variable "sg_r53_id" {}
@@ -256,3 +256,6 @@ variable "r53_healhcheck_failure_threshold" {
 variable "r53_healhcheck_stringmatch" {
   default = ""
 }
+
+# certs
+variable "wildcard_cert_arn" {}

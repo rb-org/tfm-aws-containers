@@ -15,7 +15,7 @@ module "alb" {
   https_listeners_count = "${var.https_listeners_count}"
 
   https_listeners = "${list(
-    map("certificate_arn", module.cert.arn, "port", var.https_listeners_ports[0], "target_group_index", 0)
+    map("certificate_arn", var.wildcard_cert_arn, "port", var.https_listeners_ports[0], "target_group_index", 0)
     )}"
 
   extra_ssl_certs_count = 0
@@ -74,7 +74,7 @@ module "alb" {
 resource "aws_alb_listener_rule" "listener_rule_fargate" {
   count        = "${var.https_listeners_count}"
   listener_arn = "${module.alb.https_listener_arns[count.index]}"
-  priority     = 98
+  priority     = 40
 
   action {
     type             = "forward"
@@ -90,7 +90,7 @@ resource "aws_alb_listener_rule" "listener_rule_fargate" {
 resource "aws_alb_listener_rule" "listener_rule_ecs" {
   count        = "${var.https_listeners_count}"
   listener_arn = "${module.alb.https_listener_arns[count.index]}"
-  priority     = 99
+  priority     = 45
 
   action {
     type             = "forward"
@@ -106,7 +106,7 @@ resource "aws_alb_listener_rule" "listener_rule_ecs" {
 resource "aws_alb_listener_rule" "listener_rule_eks" {
   count        = "${var.https_listeners_count}"
   listener_arn = "${module.alb.https_listener_arns[count.index]}"
-  priority     = 99
+  priority     = 50
 
   action {
     type             = "forward"
@@ -122,7 +122,7 @@ resource "aws_alb_listener_rule" "listener_rule_eks" {
 resource "aws_alb_listener_rule" "listener_rule_ec2" {
   count        = "${var.https_listeners_count}"
   listener_arn = "${module.alb.https_listener_arns[count.index]}"
-  priority     = 99
+  priority     = 55
 
   action {
     type             = "forward"

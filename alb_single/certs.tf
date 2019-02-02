@@ -3,7 +3,7 @@ module "cert" {
   source = "git@github.com:rb-org/tfm-aws-mod-misc//acm?ref=v0.0.1"
 
   domains = {
-    "${var.r53_dns_domain_pub}." = "${local.https_listener_ssl_cert_names}"
+    "${var.r53_dns_domain_pub}." = "${local.ssl_cert_primary_name}"
   }
 
   ssl_cert_primary_name = "${local.ssl_cert_primary_name[0]}"
