@@ -15,6 +15,7 @@ module "alb_single" {
   enable_route53_health_checks    = true
   enable_cloudwatch_alarm_actions = true
   https_listeners_count           = 1
+  wildcard_cert_arn               = "${data.terraform_remote_state.flaskapi_base.wildcard_cert_arn}"
 
   # Security Groups
   sg_r53_id = "${data.terraform_remote_state.flaskapi_base.r53_hcs_sg_id}"
