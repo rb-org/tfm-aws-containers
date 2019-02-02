@@ -44,4 +44,8 @@ module "fargate" {
 
   # Database
   flaskapi_rds_instance_endpoint = "${data.terraform_remote_state.database.flaskapi_rds_instance_endpoint}"
+
+  # Network
+  public_subnets = "${data.terraform_remote_state.flaskapi_base.public_subnets_ids}"
+  flaskapi_sg_id = "${data.terraform_remote_state.flaskapi_base.flaskapi_sg_id}"
 }

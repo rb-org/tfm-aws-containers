@@ -10,7 +10,7 @@ resource "aws_security_group_rule" "ir_https_tcp" {
   protocol          = "tcp"
   cidr_blocks       = "${var.allowed_ips}"
   security_group_id = "${var.sg_alb_id}"
-  description       = "Splunk ALB HTTPS Rule - Allowed IPss"
+  description       = "ALB HTTPS Rule - Allowed IPs"
 }
 
 resource "aws_security_group_rule" "ir_r53_health_checks_tcp" {
