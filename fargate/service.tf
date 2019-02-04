@@ -16,16 +16,11 @@ resource "aws_ecs_service" "flaskapi" {
   }
 
   network_configuration {
-    subnets         = ["${var.public_subnets}"]
-    security_groups = ["${var.flaskapi_sg_id}"]
-  }
+    subnets = ["${var.private_subnets}"]
 
-  # Tags
-  tags = "${merge(
-    var.default_tags, 
-    map(
-      "Name", "${local.service_name}",
-      "Workspace", "${terraform.workspace}"
-    )
-  )}"
+    security_groups = [
+      "${var.flaskapi_sg_id}",
+      "${var.db_clients_sg_id}",
+    ]
+  }
 }

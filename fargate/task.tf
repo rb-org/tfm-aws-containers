@@ -1,5 +1,5 @@
 resource "aws_ecs_task_definition" "flaskapi" {
-  family                = "service"
+  family                = "${local.task_name}"
   container_definitions = "${data.template_file.flaskapi_task_def.rendered}"
 
   requires_compatibilities = ["FARGATE"]
@@ -7,7 +7,9 @@ resource "aws_ecs_task_definition" "flaskapi" {
   memory                   = "${var.memory}"
 
   execution_role_arn = "${local.task_exec_role}"
-  network_mode       = "awsvpc"
+
+  # task_role_arn      = "${var.ecs_role_arn}"
+  network_mode = "awsvpc"
 
   # Tags
   tags = "${merge(

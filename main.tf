@@ -1,3 +1,9 @@
+module "iam" {
+  source = "./iam"
+
+  default_tags = "${var.default_tags}"
+}
+
 module "alb_single" {
   source = "./alb_single"
 
@@ -46,6 +52,13 @@ module "fargate" {
   flaskapi_rds_instance_endpoint = "${data.terraform_remote_state.database.flaskapi_rds_instance_endpoint}"
 
   # Network
-  public_subnets = "${data.terraform_remote_state.flaskapi_base.public_subnets_ids}"
-  flaskapi_sg_id = "${data.terraform_remote_state.flaskapi_base.flaskapi_sg_id}"
+  public_subnets  = "${data.terraform_remote_state.flaskapi_base.public_subnets_ids}"
+  private_subnets = "${data.terraform_remote_state.flaskapi_base.private_subnets_ids}"
+
+  # Security Groups
+  flaskapi_sg_id   = "${data.terraform_remote_state.flaskapi_base.flaskapi_sg_id}"
+  db_clients_sg_id = "${data.terraform_remote_state.flaskapi_base.db_clients_sg_id}"
+
+  # IAM
+  ecs_role_arn = "${module.iam.ecs_role_arn}"
 }

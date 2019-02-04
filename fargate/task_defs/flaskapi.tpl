@@ -10,6 +10,14 @@
         "hostPort": ${host_port}
       }
     ],
+    "logConfiguration": { 
+      "logDriver": "awslogs",
+      "options": { 
+          "awslogs-group" : "${log_group}",
+          "awslogs-region": "${region}",
+          "awslogs-stream-prefix": "ecs"
+      }
+    },
     "environment": [
         {
           "name": "db_address",

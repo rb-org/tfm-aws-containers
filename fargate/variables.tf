@@ -28,7 +28,18 @@ variable "memory" {
 
 variable "flaskapi_rds_instance_endpoint" {}
 variable "flaskapi_sg_id" {}
+variable "db_clients_sg_id" {}
 
 variable "public_subnets" {
   type = "list"
+}
+
+variable "private_subnets" {
+  type = "list"
+}
+
+variable "ecs_role_arn" {}
+
+variable "log_group_retention" {
+  default = 3
 }
