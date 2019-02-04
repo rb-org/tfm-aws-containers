@@ -57,7 +57,7 @@ variable "https_listeners_ports" {
 }
 
 variable "https_listeners_count" {
-  default = 0
+  default = 1
 }
 
 variable "idle_timeout" {

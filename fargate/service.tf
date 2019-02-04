@@ -1,5 +1,5 @@
 resource "aws_ecs_service" "flaskapi" {
-  name            = "mongodb"
+  name            = "${local.service_name}"
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.flaskapi.arn}"
   desired_count   = "${var.desired_count}"
@@ -12,5 +12,10 @@ resource "aws_ecs_service" "flaskapi" {
 
   lifecycle {
     ignore_changes = ["desired_count"]
+  }
+
+  network_configuration {
+    subnets         = ["${var.public_subnets}"]
+    security_groups = ["${var.flaskapi_sg_id}"]
   }
 }

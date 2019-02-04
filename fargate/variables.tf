@@ -27,3 +27,8 @@ variable "memory" {
 }
 
 variable "flaskapi_rds_instance_endpoint" {}
+variable "flaskapi_sg_id" {}
+
+variable "public_subnets" {
+  type = "list"
+}
