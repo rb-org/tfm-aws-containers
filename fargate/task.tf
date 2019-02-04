@@ -8,4 +8,13 @@ resource "aws_ecs_task_definition" "flaskapi" {
 
   execution_role_arn = "${local.task_exec_role}"
   network_mode       = "awsvpc"
+
+  # Tags
+  tags = "${merge(
+    var.default_tags, 
+    map(
+      "Name", "${local.task_name}",
+      "Workspace", "${terraform.workspace}"
+    )
+  )}"
 }
