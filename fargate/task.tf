@@ -1,4 +1,5 @@
 resource "aws_ecs_task_definition" "flaskapi" {
+  count                 = "${local.local_count}"
   family                = "${local.task_name}"
   container_definitions = "${data.template_file.flaskapi_task_def.rendered}"
 

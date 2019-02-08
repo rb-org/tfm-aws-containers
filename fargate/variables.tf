@@ -4,6 +4,8 @@ variable "default_tags" {
   type = "map"
 }
 
+variable "cluster_id" {}
+
 variable "desired_count" {
   default = 1
 }
@@ -38,8 +40,12 @@ variable "private_subnets" {
   type = "list"
 }
 
-variable "ecs_role_arn" {}
+# variable "ecs_role_arn" {}
 
 variable "log_group_retention" {
   default = 3
+}
+
+variable "enable_fargate" {
+  default = false
 }

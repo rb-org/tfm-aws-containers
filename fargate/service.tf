@@ -1,6 +1,7 @@
 resource "aws_ecs_service" "flaskapi" {
+  count           = "${local.local_count}"
   name            = "${local.service_name}"
-  cluster         = "${aws_ecs_cluster.main.id}"
+  cluster         = "${var.cluster_id}"
   task_definition = "${aws_ecs_task_definition.flaskapi.arn}"
   desired_count   = "${var.desired_count}"
   launch_type     = "FARGATE"

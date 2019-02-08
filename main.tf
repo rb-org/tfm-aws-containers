@@ -1,8 +1,8 @@
-module "iam" {
-  source = "./iam"
+# module "iam" {
+#   source = "./iam"
 
-  default_tags = "${var.default_tags}"
-}
+#   default_tags = "${var.default_tags}"
+# }
 
 module "alb_single" {
   source = "./alb_single"
@@ -36,8 +36,18 @@ module "alb_single" {
   evaluate_target_health = "${var.evaluate_target_health}"
 }
 
+module "ecs_cluster" {
+  source = "./ecs_cluster"
+
+  # Tags
+  default_tags = "${var.default_tags}"
+}
+
 module "fargate" {
   source = "./fargate"
+
+  # ECS Cluster
+  cluster_id = "${module.ecs_cluster.id}"
 
   #ALB
   alb_single_tg_arns = "${module.alb_single.tg_arns}"
@@ -60,5 +70,5 @@ module "fargate" {
   db_clients_sg_id = "${data.terraform_remote_state.flaskapi_base.db_clients_sg_id}"
 
   # IAM
-  ecs_role_arn = "${module.iam.ecs_role_arn}"
+  # ecs_role_arn = "${module.iam.ecs_role_arn}"
 }
