@@ -7,5 +7,6 @@ locals {
     "arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM",
     "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy",
     "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess",
+    "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role",
   ]
 }

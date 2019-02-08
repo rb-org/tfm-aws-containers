@@ -8,7 +8,7 @@ resource "aws_iam_role" "ecs_role" {
     {
       "Action": "sts:AssumeRole",
       "Principal": {
-        "Service": "ecs-task.amazonaws.com"
+        "Service": "ec2.amazonaws.com"
       },
       "Effect": "Allow"
     }
@@ -23,6 +23,11 @@ EOF
       "Workspace", "${terraform.workspace}"
     )
   )}"
+}
+
+resource "aws_iam_instance_profile" "ecs_role_instance_profile" {
+  name = "${local.ecs_role_name}-profile"
+  role = "${aws_iam_role.ecs_role.name}"
 }
 
 resource "aws_iam_policy" "ecr_access" {

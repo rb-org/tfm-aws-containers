@@ -42,6 +42,10 @@ variable "private_subnets" {
 
 # variable "ecs_role_arn" {}
 
-variable "enable_fargate" {
+variable "log_group_retention" {
+  default = 3
+}
+
+variable "enable_ec2" {
   default = false
 }

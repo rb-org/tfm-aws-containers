@@ -18,7 +18,7 @@ data "template_file" "flaskapi_task_def" {
     user            = "flask"
     log_group       = "${local.log_group_name}"
     region          = "${data.aws_region.current.name}"
-    log_stream_name = "ecs-fargate"
+    log_stream_name = "ecs-ec2"
 
     # cpu            = "${var.cpu}"
     # memory         = "${var.memory}"
