@@ -18,8 +18,6 @@ variable "alb_single_tg_arns" {
   type = "list"
 }
 
-variable "flaskapi_repo_url" {}
-
 variable "cpu" {
   default = 512
 }
@@ -44,4 +42,8 @@ variable "private_subnets" {
 
 variable "enable_fargate" {
   default = false
+}
+
+variable "image_version" {
+  default = "latest"
 }

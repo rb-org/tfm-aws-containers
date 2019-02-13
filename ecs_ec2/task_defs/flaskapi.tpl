@@ -32,10 +32,6 @@
           "value": "${password}"
         },
         {
-          "name": "db_port",
-          "value": "${port}"
-        },
-        {
           "name": "db_user",
           "value": "${user}"
         }

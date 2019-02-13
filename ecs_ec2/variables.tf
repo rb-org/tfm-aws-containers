@@ -18,7 +18,7 @@ variable "alb_single_tg_arns" {
   type = "list"
 }
 
-variable "flaskapi_repo_url" {}
+# variable "flaskapi_repo_url" {}
 
 variable "cpu" {
   default = 512
@@ -48,4 +48,10 @@ variable "log_group_retention" {
 
 variable "enable_ec2" {
   default = false
+}
+
+variable "log_group_name" {}
+
+variable "image_version" {
+  default = "latest"
 }

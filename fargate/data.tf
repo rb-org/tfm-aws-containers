@@ -7,11 +7,11 @@ data "template_file" "flaskapi_task_def" {
 
   vars = {
     task_name       = "${local.task_name}"
-    image_url       = "${var.flaskapi_repo_url}:latest"
+    image_url       = "${data.aws_ecr_repository.flaskapi.repository_url}:${var.image_version}"
     container_port  = "${var.flaskapi_port}"
     host_port       = "${var.flaskapi_port}"
     essential       = true
-    db_endpoint     = "${data.aws_ecr_repository.flaskapi.repository_url}:latest"
+    db_endpoint     = "${var.flaskapi_rds_instance_endpoint}"
     database        = "people"
     password        = "DifficultPassword!"
     port            = "3306"

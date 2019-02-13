@@ -93,3 +93,4 @@ variable "ebs_optimized" {
 variable "tux_sg_id" {}
 
 variable "cluster_id" {}
+variable "cluster_name" {}

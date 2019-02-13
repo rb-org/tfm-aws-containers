@@ -31,15 +31,16 @@ module "instance" {
   disk_metric_name         = "disk_used_percent"
   disk_threshold           = "75"
   disk_unit                = "Percent"
-  diskspace_disks          = ["xvda1"]
+  diskspace_disks          = ["nvme0n1p1"]
   path                     = ["/"]
 
   ## Tags
 
   default_tags = "${merge(var.default_tags, 
       map(
-        "Workspace", format("%s", terraform.workspace),
-        "ChefEnv", "${terraform.workspace}"
+        "Workspace",  format("%s", terraform.workspace),
+        "ChefEnv",    "${terraform.workspace}",
+        "EcsCluster", "${var.cluster_name}"
         )
       )}"
   app_role       = "${var.app_role}"
@@ -55,6 +56,6 @@ module "instance" {
   # Userdata
 
   userdata_vars = {
-    cluster_id = "${var.cluster_id}"
+    ecs_userdata = "${local.ecs_userdata}"
   }
 }

@@ -10,5 +10,6 @@ data "template_file" "cw_agent_tux" {
 
   vars {
     instance_name = "${local.instance_name}"
+    log_prefix    = "xyz"
   }
 }

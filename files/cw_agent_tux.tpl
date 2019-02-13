@@ -10,45 +10,45 @@
 				"collect_list": [
 					{
 						"file_path": "/var/log/cron",
-						"log_group_name": "/excp/${instance_name}-log-group",
+						"log_group_name": "/${log_prefix}/${instance_name}-log-group",
             "log_stream_name": "{instance_id}/cron",
             "timezone": "UTC"
 					},
 					{
 						"file_path": "/var/log/opscode/nginx/error.log",
-						"log_group_name": "/excp/${instance_name}-log-group",
+						"log_group_name": "/${log_prefix}/${instance_name}-log-group",
             "log_stream_name": "{instance_id}/nginx",
             "timezone": "UTC"
 					},
           {
             "file_path": "/var/log/amazon/ssm/amazon-ssm-agent.log",
-            "log_group_name": "/excp/${instance_name}-log-group",
+            "log_group_name": "/${log_prefix}/${instance_name}-log-group",
             "log_stream_name": "{instance_id}/ssm_agent",
             "timezone": "UTC",
             "timestamp_format":"%H:%M:%S %y %b %-d"
           },
 					{
             "file_path": "/opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log",
-            "log_group_name": "/excp/${instance_name}-log-group",
+            "log_group_name": "/${log_prefix}/${instance_name}-log-group",
             "log_stream_name": "{instance_id}/cw_agent",
             "timezone": "UTC",
             "timestamp_format":"%H:%M:%S %y %b %-d"
           },
           {
             "file_path": "/var/log/syslog",
-            "log_group_name": "/excp/${instance_name}-log-group",
+            "log_group_name": "/${log_prefix}/${instance_name}-log-group",
             "log_stream_name": "{instance_id}/syslog",
             "timezone": "UTC"
           },
           {
             "file_path": "/var/log/kern.log",
-            "log_group_name": "/excp/${instance_name}-log-group",
+            "log_group_name": "/${log_prefix}/${instance_name}-log-group",
             "log_stream_name": "{instance_id}/kern",
             "timezone": "UTC"
           },
           {
             "file_path": "/var/log/cloud-init-output.log",
-            "log_group_name": "/excp/${instance_name}-log-group",
+            "log_group_name": "/${log_prefix}/${instance_name}-log-group",
             "log_stream_name": "{instance_id}/cfn",
             "timezone": "UTC"
           }

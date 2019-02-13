@@ -57,9 +57,6 @@ module "fargate" {
   # Tags
   default_tags = "${var.default_tags}"
 
-  # Image
-  flaskapi_repo_url = "${data.terraform_remote_state.ecr.flaskapi_repository_url}"
-
   # Database
   flaskapi_rds_instance_endpoint = "${data.terraform_remote_state.database.flaskapi_rds_instance_endpoint}"
 
@@ -79,6 +76,7 @@ module "ecs_ec2" {
 
   # Service 
   desired_count = 1
+  image_version = "latest"
 
   # ECS Cluster
   cluster_id = "${module.ecs_cluster.id}"
@@ -88,9 +86,6 @@ module "ecs_ec2" {
 
   # Tags
   default_tags = "${var.default_tags}"
-
-  # Image
-  flaskapi_repo_url = "${data.terraform_remote_state.ecr.flaskapi_repository_url}"
 
   # Database
   flaskapi_rds_instance_endpoint = "${data.terraform_remote_state.database.flaskapi_rds_instance_endpoint}"
@@ -105,13 +100,17 @@ module "ecs_ec2" {
 
   # IAM
   # ecs_role_arn = "${module.iam.ecs_role_arn}"
+
+  # Monitoring
+  log_group_name = "${module.ecs_cluster.log_group_name}"
 }
 
 module "ec2_nodes" {
   source = "./ec2_nodes"
 
   # ECS Cluster
-  cluster_id = "${module.ecs_cluster.id}"
+  cluster_id   = "${module.ecs_cluster.id}"
+  cluster_name = "${module.ecs_cluster.name}"
 
   # Network
   vpc_id          = "${data.terraform_remote_state.flaskapi_base.vpc_id}"

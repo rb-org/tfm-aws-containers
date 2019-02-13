@@ -10,12 +10,24 @@ data "aws_ami" "amazon_ecs" {
   owners      = ["amazon"]
 
   filter {
-    name   = "name"
-    values = ["*amazon-ecs-optimized*"]
+    name = "name"
+
+    # values = ["amzn-ami-*-amazon-ecs-optimized"]
+    values = ["amzn2-ami-ecs-hvm*"]
   }
 
   filter {
     name   = "state"
     values = ["available"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
   }
 }
